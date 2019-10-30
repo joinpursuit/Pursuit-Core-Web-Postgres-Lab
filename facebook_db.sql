@@ -17,15 +17,16 @@ age INT
 
 CREATE TABLE post(
     id INT PRIMARY KEY,
-    poster_id INT REFERENCES users(id),
+    poster_id INT REFERENCES users(id) ON DELETE CASCADE,
     body VARCHAR
+    
 );
 
 
 CREATE TABLE likes(
     id INT PRIMARY KEY,
-    liker_id INT REFERENCES users(id), 
-    post_id INT REFERENCES post(id)
+    liker_id INT REFERENCES users(id) ON DELETE CASCADE, 
+    post_id INT REFERENCES post(id) ON DELETE CASCADE
 );
 
 --  Add 5 users
@@ -123,17 +124,20 @@ id = 3;
 DELETE FROM likes
 WHERE liker_id = 1 AND post_id = 5;
 
-SELECT * FROM likes
+SELECT * FROM likes;
 
-DELETE FROM posts
-WHERE poster_id = 1 AND id = 4;
+-- ALTER TABLE post
+-- DROP FOREIGN KEY poster_id;
+
+DELETE FROM post
+WHERE id = 4 AND poster_id = 1;
+
+SELECT * FROM post;
 
 DELETE FROM users
-where id = 2;
+WHERE id = 2;
 
-
-
-
+SELECT * FROM users;
 
 --  Find the user who has given the most likes.
 --  Find the most liked post.
