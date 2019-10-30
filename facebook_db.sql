@@ -180,6 +180,10 @@ LIMIT 1;
 -- Find all the information of the user who posted the most liked post.
 SELECT id, full_name, age
 FROM users
-INNER JOIN likes
-BY users.id = likes.liker_id
+WHERE id =
+(SELECT liker_id
+FROM likes
+GROUP BY liker_id
+ORDER BY COUNT(liker_id) DESC
+LIMIT 1);
 
