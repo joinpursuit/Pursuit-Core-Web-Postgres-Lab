@@ -45,10 +45,10 @@ Write SQL statements that accomplish/express the following. Have these SQL queri
 -- Add and Manipulate Data
 ```
 
-- [ ] Add 5 users
-- [ ] One user should have three posts. Add at least one post for the rest of users. 
-- [ ] User with `id = 1` likes all the other users posts.
-- [ ] User with `id = 2` likes only his/her own post.
+- [! ] Add 5 users
+- [! ] One user should have three posts. Add at least one post for the rest of users. 
+- [ !] User with `id = 1` likes all the other users posts.
+- [! ] User with `id = 2` likes only his/her own post.
 - [ ] User's `2` & `1` posts are liked by user `3` 
 - [ ] User `4` likes all posts except her own and user's `1`.
 - [ ] All the posts of user's `1`, `2`, `3` are liked by user `5`.
