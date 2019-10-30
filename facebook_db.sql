@@ -60,7 +60,7 @@ INSERT INTO posts (poster_id, body) VALUES
     (4, 'You cant see me'),
     (5, 'Touchdown');
 
-INSERT INTO likes (liker_id, post_id) VALUES
+INSERT likes (liker_id, post_id) VALUES
     (1, 4),
     (1, 5),
     (1, 6),
@@ -107,7 +107,7 @@ DELETE FROM posts
 
 DELETE FROM posts
     WHERE poster_id = 1 AND id = (
-        SELECT MAX(id) FROM posts WEHRE poster_id = 1
+        SELECT MAX(id) FROM posts WHERE poster_id = 1
     );
 
 DELETE FROM users
