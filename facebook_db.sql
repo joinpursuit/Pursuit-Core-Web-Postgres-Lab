@@ -4,27 +4,30 @@ Postgres Lab
 */
 
 
+-- -- --
+-- V1
+
 -- Database & Table Creation
 DROP DATABASE IF EXISTS kertal;
 CREATE DATABASE kertal;
 \c kertal
 
 CREATE TABLE users (
-   id SERIAL PRIMARY KEY,
+   user_id SERIAL PRIMARY KEY,
    name VARCHAR(36),
    age INT
 );
 
 CREATE TABLE posts (
    post_id SERIAL PRIMARY KEY,
-   owner_id INT REFERENCES users (id) ON DELETE CASCADE,
+   poster_id INT REFERENCES users (user_id) ON DELETE CASCADE,
    body TEXT
 );
 
 CREATE TABLE likes (
    like_id SERIAL PRIMARY KEY,
-   owner_id INT REFERENCES users (id) ON DELETE CASCADE,
-   target_id INT REFERENCES posts (post_id) ON DELETE CASCADE
+   liker_id INT REFERENCES users (user_id) ON DELETE CASCADE,
+   liked_post_id INT REFERENCES posts (post_id) ON DELETE CASCADE
 );
 
 
@@ -36,7 +39,7 @@ INSERT INTO users (name, age) VALUES
    ('Queen Black', 46),
    ('Bishop Black', 38);
 
-INSERT INTO posts (owner_id, body) VALUES
+INSERT INTO posts (poster_id, body) VALUES
    (4, 'Are we gaming against White today? Or is that tomorrow?'),
    (2, $hit1$I have been obsessed with stripes lately. Can't stand checks.$hit1$),
    (1, 'I THINK I joined the WRONG group'),
@@ -45,7 +48,7 @@ INSERT INTO posts (owner_id, body) VALUES
    (3, 'no i don''t have any forks right now'),
    (5, 'Has someone seen Knight?');
 
-INSERT INTO likes (owner_id, target_id) VALUES
+INSERT INTO likes (liker_id, liked_post_id) VALUES
    (1, 2),
    (1, 4),
    (1, 5),
@@ -68,44 +71,66 @@ INSERT INTO likes (owner_id, target_id) VALUES
 
 UPDATE users
 SET age = 31
-WHERE id = 5;
+WHERE user_id = 5;
 
 UPDATE users
 SET name = 'Alfred'
-WHERE id = 3;
+WHERE user_id = 3;
 
 DELETE FROM likes
-WHERE target_id = 2;
+WHERE liked_post_id = 2;
 
 DELETE FROM posts
 WHERE post_id = 6;
 
 DELETE FROM users
-WHERE id = 2;
+WHERE user_id = 2;
 
 
 -- Data Queries
 SELECT DISTINCT name
    , COUNT(*) AS likes_tally
 FROM likes
-JOIN users ON (owner_id = id)
-GROUP BY users.name
+JOIN users ON (liker_id = user_id)
+GROUP BY name
 ORDER BY likes_tally DESC LIMIT 1;
 
 SELECT DISTINCT body
    , COUNT(*) AS likes_tally
 FROM posts
-JOIN likes ON (post_id = target_id)
+JOIN likes ON (post_id = liked_post_id)
 GROUP BY body
 ORDER BY likes_tally DESC LIMIT 2;
    -- two-way tie for most-liked post by same user
 
 SELECT *
 FROM users
-JOIN posts ON (id = posts.owner_id)
-JOIN likes ON (id = likes.owner_id)
+JOIN posts ON (user_id = poster_id)
+JOIN likes ON (user_id = liker_id)
 WHERE 3 IN (
-      posts.owner_id
-      , likes.owner_id
+      poster_id
+      , liker_id
       )
 ORDER BY post_id ASC;
+
+
+-- -- --
+-- V2 bonus
+
+CREATE TABLE comments (
+   comment_id SERIAL PRIMARY KEY,
+   commenter_id INT REFERENCES users (user_id) ON DELETE CASCADE,
+   commented_post_id INT REFERENCES posts (post_id) ON DELETE CASCADE,
+   body TEXT
+);
+
+CREATE TABLE albums (
+   album_id SERIAL PRIMARY KEY,
+   album_owner_id INT REFERENCES users (user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE pictures (
+   picture_id SERIAL PRIMARY KEY,
+   containing_album_id INT REFERENCES albums (album_id),
+   url VARCHAR
+);
