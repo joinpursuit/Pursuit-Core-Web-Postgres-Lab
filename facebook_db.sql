@@ -131,6 +131,6 @@ CREATE TABLE albums (
 
 CREATE TABLE pictures (
    picture_id SERIAL PRIMARY KEY,
-   containing_album_id INT REFERENCES albums (album_id),
-   url VARCHAR
+   containing_album_id INT REFERENCES albums (album_id) ON DELETE CASCADE,
+   url VARCHAR(2083)
 );
