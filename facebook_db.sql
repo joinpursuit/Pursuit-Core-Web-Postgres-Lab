@@ -82,3 +82,30 @@ WHERE post_id = 6;
 
 DELETE FROM users
 WHERE id = 2;
+
+
+-- Data Queries
+SELECT DISTINCT name
+   , COUNT(*) AS likes_tally
+FROM likes
+JOIN users ON (owner_id = id)
+GROUP BY users.name
+ORDER BY likes_tally DESC LIMIT 1;
+
+SELECT DISTINCT body
+   , COUNT(*) AS likes_tally
+FROM posts
+JOIN likes ON (post_id = target_id)
+GROUP BY body
+ORDER BY likes_tally DESC LIMIT 2;
+   -- two-way tie for most-liked post by same user
+
+SELECT *
+FROM users
+JOIN posts ON (id = posts.owner_id)
+JOIN likes ON (id = likes.owner_id)
+WHERE 3 IN (
+      posts.owner_id
+      , likes.owner_id
+      )
+ORDER BY post_id ASC;
