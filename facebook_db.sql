@@ -17,14 +17,14 @@ CREATE TABLE users (
 
 CREATE TABLE posts (
    post_id SERIAL PRIMARY KEY,
-   owner_id INT REFERENCES users (id),
+   owner_id INT REFERENCES users (id) ON DELETE CASCADE,
    body TEXT
 );
 
 CREATE TABLE likes (
    like_id SERIAL PRIMARY KEY,
-   owner_id INT REFERENCES users (id),
-   target_id INT REFERENCES posts (post_id)
+   owner_id INT REFERENCES users (id) ON DELETE CASCADE,
+   target_id INT REFERENCES posts (post_id) ON DELETE CASCADE
 );
 
 
@@ -44,7 +44,6 @@ INSERT INTO posts (owner_id, body) VALUES
    (3, 'can''t. breathe.'),
    (3, 'no i don''t have any forks right now'),
    (5, 'Has someone seen Knight?');
-
 
 INSERT INTO likes (owner_id, target_id) VALUES
    (1, 2),
@@ -66,3 +65,20 @@ INSERT INTO likes (owner_id, target_id) VALUES
    (5, 4),
    (5, 5),
    (5, 6);
+
+UPDATE users
+SET age = 31
+WHERE id = 5;
+
+UPDATE users
+SET name = 'Alfred'
+WHERE id = 3;
+
+DELETE FROM likes
+WHERE target_id = 2;
+
+DELETE FROM posts
+WHERE post_id = 6;
+
+DELETE FROM users
+WHERE id = 2;
