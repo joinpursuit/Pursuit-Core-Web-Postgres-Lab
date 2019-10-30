@@ -60,7 +60,7 @@ INSERT INTO posts (poster_id, body) VALUES
     (4, 'You cant see me'),
     (5, 'Touchdown');
 
-INSERT likes (liker_id, post_id) VALUES
+INSERT INTO likes (liker_id, post_id) VALUES
     (1, 4),
     (1, 5),
     (1, 6),
