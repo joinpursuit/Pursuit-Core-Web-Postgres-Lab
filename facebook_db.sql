@@ -128,6 +128,16 @@ FROM
     -- ORDER BY COUNT(post_id) DESC
     -- LIMIT 5;
 
+-- Find the most liked post.
+SELECT
+    COUNT(liker_id) AS Counting, post_id
+FROM
+    Likes
+    GROUP BY post_id;
+
+-- Find all the information of the user how posted the most liked post.
+
+
 -- Select Something
 
 SELECT 
