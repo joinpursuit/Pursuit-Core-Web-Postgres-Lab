@@ -149,7 +149,6 @@ GROUP BY poster_id, body
 ORDER BY COUNT(*) DESC
 LIMIT 1;
 
-\! clear
 -- FIND ALL THE INFORMATION OF THE USER WHO POSTED THE MOST LIKED POST
 
 SELECT users.id, users.name, users.age
