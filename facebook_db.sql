@@ -15,6 +15,7 @@ CREATE TABLE users (
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
+    -- user_id INT REFERENCES users(id),
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
     body TEXT
 );
@@ -91,10 +92,6 @@ WHERE liker_id = 1 AND poster_id IN (
 -- WHERE (likes.liker_id = 1 AND posts.user_id = 2);
 
 -- SELECT * FROM likes;
-
--- SELECT * FROM posts;
-
--- SELECT * FROM likes;
 -- SELECT * FROM posts;
 
 -- THE USER WHO HAD 3 POSTS DECIDES TO DELETE HIS/HER LAST POST
@@ -106,11 +103,8 @@ DELETE FROM posts WHERE id = (
         LIMIT 1
 );
 
--- MISSING DELETING THE LIKES
-
 -- SELECT * FROM posts;
 
--- -- *** ALTER TABLE(s) AND ADD CONSTRAINT => ON DELETE CASCADE ***
 
 -- USER 2 DECIDES TO DELETE THEIR ACCOUNT FROM OF SOCIAL MEDIA APP
 -- REMOVE USERS (id = 2), POSTS (user_id = 2), LIKES (liker_id = 2 & poster_id = 2)
@@ -118,6 +112,19 @@ DELETE FROM posts WHERE id = (
 -- SELECT * FROM users;
 -- SELECT * FROM posts;
 -- SELECT * FROM likes;
+
+-- \d users
+
+-- -- *** ALTER TABLE(s) AND ADD CONSTRAINT => ON DELETE CASCADE ***
+-- ALTER TABLE posts
+-- DROP CONSTRAINT IF EXISTS posts_users_id_fkey;
+
+-- ALTER TABLE posts
+-- ADD CONSTRAINT posts_users_id_fkey
+-- FOREIGN KEY (user_id)
+-- REFERENCES users(id)
+-- ON DELETE CASCADE;
+-- *** ALTER TABLE ***
 
 DELETE FROM users WHERE id = 2;
 -- DELETE FROM posts WHERE user_id = 2;
@@ -127,8 +134,9 @@ DELETE FROM users WHERE id = 2;
 -- SELECT * FROM posts;
 -- SELECT * FROM likes;
 
+-- UNCOMMENT FROM HERE
+
 -- FIND THE USER WHO HAS GIVEN THE MOST LIKES
--- \!clear
 
 SELECT liker_id, COUNT(*)
 FROM likes
@@ -158,3 +166,23 @@ JOIN likes ON (posts.id = likes.poster_id)
 GROUP BY poster_id, body, users.id
 ORDER BY COUNT(*) DESC
 LIMIT 1;
+
+-- V2 ADDITIONS
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+    body TEXT
+);
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id)
+);
+
+CREATE TABLE pictures (
+    id SERIAL PRIMARY KEY,
+    album_id INT REFERENCES albums(id),
+    url TEXT
+);
