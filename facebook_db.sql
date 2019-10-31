@@ -1,30 +1,30 @@
 -- Database & Table Creation
-DROP DATABASE facebook;
+DROP DATABASE IF EXISTS facebook;
 
 CREATE DATABASE facebook;
 \c facebook
 
 
-
+--NOT NULL makes this column required to make the table
 CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR,
-    age INT
+    age INT NOT NULL
 );
 
 CREATE TABLE posts
 (
     id SERIAL PRIMARY KEY,
-    poster_id INT REFERENCES users(id),
-    body VARCHAR
+    poster_id INT REFERENCES users(id) ON DELETE CASCADE,
+    body TEXT
 );
 
 CREATE TABLE likes
 (
     id SERIAL PRIMARY KEY,
-    liker_id INT REFERENCES users(id),
-    post_id INT REFERENCES posts(id)
+    liker_id INT REFERENCES users(id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts(id) ON DELETE CASCADE
 );
 
 --ADD and Manipulate Data
@@ -80,9 +80,14 @@ WHERE id = 3;
 DELETE FROM likes
 WHERE liker_id = 1 AND post_id = 
 (SELECT id
-FROM posts
-WHERE poster_id = 2);
+    FROM posts
+    WHERE poster_id = 2);
 
+
+
+DELETE FROM posts WHERE poster_id = 1;
+
+DELETE 
 
 SELECT *
 FROM users;
