@@ -70,8 +70,8 @@ INSERT INTO Likes(liker_id, post_id)
 --  User 4 likes all posts except her own and user's 1.
 INSERT INTO Likes(liker_id, post_id)
     VALUES 
+        (4, 4),
         (4, 5),
-        (4, 6),
         (4, 7);
 
 --  All the posts of user's 1, 2, 3 are liked by user 5.
@@ -92,10 +92,11 @@ UPDATE Users SET username = 'Alfred' WHERE id = 3;
 --  User 1 stops liking user's 2 post.
 DELETE FROM Likes
 WHERE
-    liker_id IN
-    (SELECT liker_id
-    FROM Likes
-WHERE id = 2);
+    liker_id = 1 AND post_id =
+    (SELECT id
+    FROM posts
+    WHERE id = 2);
+
 
 --  The user who had three posts decides to delete his/her last post.
 DELETE FROM
@@ -121,26 +122,46 @@ WHERE
 -- WHERE id = 2);
 
 SELECT
-    COUNT(post_id) AS Counting, liker_id
+    liker_id, COUNT(liker_id)
 FROM
     Likes
-    GROUP BY liker_id;
-    -- ORDER BY COUNT(post_id) DESC
-    -- LIMIT 5;
+GROUP BY 
+    liker_id
+ORDER BY 
+    COUNT(liker_id) DESC;
+-- LIMIT 1;
 
 -- Find the most liked post.
+
 SELECT
-    COUNT(liker_id) AS Counting, post_id
+    post_id, COUNT(post_id)
 FROM
     Likes
-    GROUP BY post_id;
+GROUP BY
+    post_id
+ORDER BY 
+    COUNT(post_id) DESC;
+-- LIMIT 1;
 
--- Find all the information of the user how posted the most liked post.
 
+
+-- Find all the information of the user who posted the most liked post.
+SELECT * FROM users
+WHERE id =
+(SELECT
+    liker_id
+FROM
+    likes
+GROUP BY 
+    liker_id
+ORDER BY 
+    COUNT(liker_id) DESC
+LIMIT 1)
+;
 
 -- Select Something
 
-SELECT 
-*
-FROM
-    Likes;
+-- SELECT 
+-- *
+-- FROM
+--     Likes;
