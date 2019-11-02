@@ -122,7 +122,10 @@ id = 3;
 --  User 2 decides to delete their account from of social media app.
 
 DELETE FROM likes
-WHERE liker_id = 1 AND post_id = 5;
+WHERE liker_id = 1 AND post_id = (
+select id FROM posts
+WHERE poster_id = 2 
+);
 
 SELECT * FROM likes;
 
