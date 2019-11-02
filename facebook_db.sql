@@ -10,8 +10,7 @@ CREATE DATABASE facebook;
 
 CREATE TABLE users(
 id INT PRIMARY KEY,
-firstname VARCHAR,
-lastname VARCHAR,
+name VARCHAR,
 age INT
 );
 
@@ -30,12 +29,12 @@ CREATE TABLE likes(
 );
 
 --  Add 5 users
-INSERT into users (id, firstname, lastname, age)
-VALUES(1, 'John', 'Doe', '20'),
-      (2, 'Jane', 'Love', '45'),
-      (3, 'Angel', 'Smith', '16'),
-      (4, 'Charisma', 'Watson', '30'),
-      (5, 'No', 'Name', 100);
+INSERT into users (id, name, age)
+VALUES(1, 'John Doe', '20'),
+      (2, 'Jane Love', '45'),
+      (3, 'Angel Smith', '16'),
+      (4, 'Charisma Watson', '30'),
+      (5, 'No Name', 100);
 
       SELECT * FROM users;
 --  One user should have three posts. Add at least one post for the rest of users.
@@ -93,8 +92,7 @@ WHERE
 id = 5;
 
 select 
-firstname, 
-lastname,
+name
 age
 FROM
 users
@@ -104,13 +102,12 @@ id = 5;
 UPDATE
 users
 SET
-firstname = 'Alfred'
+name = 'Alfred'
 WHERE
 id = 3;
 
 select 
-firstname, 
-lastname,
+name, 
 age
 FROM
 users
@@ -129,9 +126,6 @@ WHERE poster_id = 2
 
 SELECT * FROM likes;
 
--- ALTER TABLE post
--- DROP FOREIGN KEY poster_id;
-
 DELETE FROM post
 WHERE id = 4 AND poster_id = 1;
 
@@ -145,3 +139,33 @@ SELECT * FROM users;
 --  Find the user who has given the most likes.
 --  Find the most liked post.
 --  Find all the information of the user how posted the most liked post.
+
+SELECT liker_id, COUNT(liker_id) FROM likes
+GROUP BY liker_id
+ORDER BY COUNT(liker_id) DESC
+LIMIT 1
+;
+
+
+SELECT post_id, COUNT(post_id) FROM likes 
+GROUP BY post_id
+ORDER BY COUNT(post_id) DESC
+LIMIT 1
+;
+
+SELECT * FROM users
+WHere id =(
+SELECT liker_id
+FROM likes
+GROUP BY liker_id
+ORDER BY COUNT(liker_id) DESC
+LIMIT 1);
+
+SELECT name, array_agg(post_id) 
+FROM users 
+JOIN likes on users.id = likes.liker_id
+GROUP BY name
+ORDER BY (SELECT COUNT(liker_id)) DESC
+Limit 1; 
+
+
