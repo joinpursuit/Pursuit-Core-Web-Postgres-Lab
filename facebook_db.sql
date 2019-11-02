@@ -96,4 +96,32 @@ WHERE
 
 -------------------
 
+SELECT firstname, COUNT(post_id) AS num_of_likes
+FROM users
+JOIN likes ON users.id = likes.liker_id
+GROUP BY firstname
+ORDER BY num_of_likes DESC
+LIMIT 1;
 
+---------------------
+
+SELECT posts.id AS post_id, COUNT(posts.id) AS times_liked
+FROM posts
+JOIN likes ON posts.id = likes.post_id
+GROUP BY posts.id
+ORDER BY times_liked DESC
+LIMIT 1;
+
+ -----------------------
+
+SELECT * FROM users
+JOIN posts ON users.id = posts.poster_id
+WHERE posts.id = (
+
+    SELECT posts.id
+    FROM posts
+    JOIN likes ON posts.id = likes.post_id
+    GROUP BY posts.id
+    ORDER BY COUNT(posts.body) DESC 
+    LIMIT 1
+);
