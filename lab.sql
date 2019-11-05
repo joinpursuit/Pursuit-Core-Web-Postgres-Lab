@@ -1,4 +1,5 @@
 -- Database and Tables 
+DROP DATABASE facebook;
 CREATE DATABASE facebook;
 \c facebook
 -- Create (Users) Table
@@ -26,7 +27,7 @@ INSERT into users (firstname, age)
           ('Charlie', 23),
           ('Foxtrot', 24),
           ('Whiskey', 25),
-          ('Bravo', 26);
+          ('Bravo', 26);      
 SELECT * FROM users;
 INSERT into posts (owner_id, body)
    VALUES (1, 'Ive been hit!'),
@@ -36,10 +37,11 @@ INSERT into posts (owner_id, body)
           (2, 'Alphas been hit!'),
           (2, 'Im the best soldier youve got');
 INSERT into posts (owner_id, body)
-   VALUES (3, 'Heard you Echo! Alpha lay down!'),
+   VALUES (3, 'Heard you Echo! Alpha lay down!');
 INSERT into posts (owner_id, body)
    VALUES (5, 'Alpha you nugget! Listen next time!'),
           (5, 'I need to pay attention...');
 INSERT into posts (owner_id, body)
    VALUES (6, 'Alpha, Echo, Charlie! Watch your flank!');
 
+SELECT posts.body, post.id AS post_id, likes.id, likes.liker_id
