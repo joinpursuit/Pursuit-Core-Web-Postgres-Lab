@@ -1,0 +1,27 @@
+DROP DATABASE IF EXISTS facebook_db;
+CREATE DATABASE facebook_db;
+
+\c facebook_db;
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS likes;
+
+CREATE TABLE users (
+    id INTEGER SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    age INTEGER
+);
+
+CREATE TABLE posts (
+    id INTEGER SERIAL PRIMARY KEY,
+    poster_id INTEGER FOREIGN KEY REFERENCES users(id),
+    body TEXT
+);
+
+CREATE TABLE likes (
+    id INTEGER SERIAL PRIMARY KEY,
+    liker_id INTEGER FOREIGN KEY REFERENCES users(id),
+    post_id INTEGER FOREIGN KEY REFERENCES posts(id)
+);
+
