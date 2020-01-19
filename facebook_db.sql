@@ -9,14 +9,18 @@ DROP TABLE IF EXISTS likes;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name TEXT NULL,
+  name TEXT NOT NULL,
   age INTEGER,
 );
 
-CREATE TABLE (
+CREATE TABLE posts(
   id SERIAL PRIMARY KEY,
+  poster_id INTEGER REFERENCES users(id),
+  body TEXT NOT NULL
 );
 
-CREATE TABLE (
+CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
+  liker_id INTEGER REFERENCES users(id),
+  post_id INTEGER REFERENCES users(id)
 );
