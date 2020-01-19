@@ -97,3 +97,9 @@ GROUP BY name ORDER BY COUNT DESC
 LIMIT 1
 
 
+SELECT body, count(post_id) AS most_liked
+FROM posts
+INNER JOIN likes ON posts.id = likes.post_id
+GROUP BY body
+ORDER BY most_liked DESC
+LIMIT 1
