@@ -1,23 +1,66 @@
---Database & Table Creation
+--Database & TABLE Creation
 
-DROP DATA DATABASE IF EXISTS facebook_data;
+DROP DATABASE IF EXISTS facebook_data;
 CREATE DATABASE facebook_data;
-\c facebook_data
 
-CREATE Table users(
+\c facebook_data;
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS post;
+
+CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     name TEXT,
-    age INTEGER,
+    age INTEGER
 );
 
-CREATE Table likes(
+CREATE TABLE posts(
     id SERIAL PRIMARY KEY,
-    FOREIGN KEY liker_id REFERENCES users(id),
-    FOREIGN KEY post_id REFERENCES posts(id),
+    poster_id INT REFERENCES users(id),
+    body TEXT
+
 );
 
-CREATE Table posts(
+CREATE TABLE likes(
     id SERIAL PRIMARY KEY,
-    FOREIGN KEY poster_id REFERENCES users(id),
-
+    liker_id INT REFERENCES users(id),
+    post_id INT REFERENCES posts(id)
 );
+
+
+
+INSERT INTO users (name, age)
+    VALUES  ('Cassidy', 23),
+            ('Danielle', 98),
+            ('Uduakabasi', 77),
+            ('Nilber', 65),
+            ('Sky', 55);
+
+
+INSERT INTO posts (poster_id, body)
+    VALUES  (2, 'DHey 1'),
+            (2, 'DHey 2'),
+            (2, 'DHey 3'),
+            (1, 'Chey 1'),
+            (3, 'UHEY'),
+            (4, 'NHey'),
+            (5, 'SHEY');
+
+INSERT INTO likes (liker_id, post_id)
+    VALUES  (1, 1),
+            (1, 2),
+            (1, 3),
+            (1, 4),
+            (1, 5),
+            (1, 6),
+            (1, 7),
+            (2, 1),
+            (2, 2),
+            (2, 3),
+            (3, 1),
+            (3, 2),
+            (3, 3),
+            (3, 4),
+            (3, 3),
+            (3, 3),
