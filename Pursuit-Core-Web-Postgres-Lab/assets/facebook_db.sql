@@ -73,3 +73,6 @@ WHERE liker_id = 1 AND post_id = 2;
 DELETE FROM posts 
 WHERE poster_id = 1 AND id = 3;
 
+DELETE FROM users
+WHERE id = 2;
+
