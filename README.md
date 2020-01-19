@@ -59,7 +59,7 @@ Write SQL statements that accomplish/express the following. Have these SQL queri
 - [ ] User `2` decides to delete their account from of social media app. 
 - [ ] Find the user who has given the most likes.
 - [ ] Find the most liked post.
-- [ ] Find all the information of the user how posted the most liked post.
+- [ ] Find all the information of the user who posted the most liked post.
 
 ### Keep in mind.
 
