@@ -6,6 +6,9 @@ CREATE DATABASE facebook_db;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS albums;
+DROP TABLE IF EXISTS pictures;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -23,6 +26,23 @@ CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
     liker_id INT REFERENCES users(id) ON DELETE SET NULL,
     post_id INT REFERENCES posts(id) ON DELETE SET NULL
+);
+
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    commenter_id INT REFERENCES users(id) ON DELETE SET NULL,
+    post_is INT REFERENCES posts(id) ON DELETE SET NULL,
+    body TEXT
+);
+
+CREATE TABLE albums(
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE SET NULL
+);
+CREATE TABLE pictures(
+    id SERIAL PRIMARY KEY,
+    album_id INT REFERENCES albums(id) ON DELETE SET NULL,
+    url TEXT
 );
 
 INSERT INTO users (name, age)
