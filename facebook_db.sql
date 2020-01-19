@@ -45,4 +45,6 @@ WHERE post_id = 3;
 SELECT liker_id FROM likes
 JOIN users 
 ON post_id = users.post_id
+
 ORDER BY liker_id DESC; 
+
