@@ -15,14 +15,14 @@ CREATE TABLE users (
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    poster_id INTEGER REFERENCES users(id),
+    poster_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     body TEXT
 );
 
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
-    liker_id INTEGER REFERENCES users(id),
-    post_id INTEGER REFERENCES posts(id)
+    liker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE
 );
 
 
@@ -53,4 +53,34 @@ INSERT INTO likes (liker_id, post_id)
         (1, 4),
         (1, 5),
         (1, 6),
-        (1, 7);
+        (1, 7),
+        (2, 5),
+        (3, 4),
+        (3, 5),
+        (4, 1),
+        (4, 2),
+        (4, 3),
+        (4, 5),
+        (4, 6),
+        (5, 4),
+        (5, 5),
+        (5, 6);
+
+UPDATE users
+SET name = 'Henry', age = 31
+WHERE id = 5;
+
+UPDATE users
+SET name = 'Alfred'
+WHERE id = 3;
+
+DELETE FROM likes
+WHERE liker_id = 1 AND post_id = 2;
+
+DELETE FROM posts
+WHERE id = 3 AND poster_id = 5;
+
+DELETE FROM users
+WHERE id = 2;
+
+
