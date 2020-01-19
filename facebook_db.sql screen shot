@@ -32,3 +32,4 @@ INSERT INTO users (name, age)
         ('Jenifer', 28),
         ('Zak', 13),
         ('Anabel', 45);
+
