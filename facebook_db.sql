@@ -30,14 +30,14 @@ CREATE TABLE likes (
 );
 
 -- Add and Manipulate Data
-INSERT INTO users
+INSERT INTO users(name, age)
 VALUES ('Wil', 36),
     ('Karen', 21),
     ('Corey', 100),
     ('Jon', 26),
     ('Jhenya', 21);
 
-INSERT INTO posts
+INSERT INTO posts(poster_id, body)
 VALUES (1,'AWESOME!'),
         (4,'Ok, Ok'),
         (1,'Love it!'),
@@ -46,7 +46,7 @@ VALUES (1,'AWESOME!'),
         (1,'Cool Beans'),
         (5,'Bonjour');
 
-INSERT INTO likes
+INSERT INTO likes(liker_id, post_id)
 VALUES (1,4),
     (1,5),
     (1,7),
