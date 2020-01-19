@@ -10,7 +10,7 @@ CREATE TABLE users(
     age INTEGER,
 );
 
-CREATE TABLE post(
+CREATE TABLE posts(
     id SERIAL PRIMARY KEY,
     poster_id INT REFERENCES users(id),
     body TEXT,
@@ -23,3 +23,6 @@ CREATE TABLE likes(
 );
 INSERT INTO users (name, age)
 VALUES ('deja', 35), ('jon', 26), ('maria', 21), ('alex', 16), ('socrates',3);
+INSERT INTO posts (name, body)
+VALUES ('deja', 'hi'), ('jon','bye'),('jon', 'hi'), ('jon','bye'),('maria', 'yerrrr'), ('alex', 'meow'),('socrates', 'bloop')
+
