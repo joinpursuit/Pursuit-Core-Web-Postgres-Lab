@@ -14,19 +14,20 @@ CREATE TABLE users (
     name TEXT,
     age INTEGER
 );
--- Add and Manipulate Data
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    poster_id INT REFERENCES users(id),
+    poster_id INT REFERENCES users(id) ON DELETE CASCADE,
     body TEXT
 );
 
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
-    liker_id INT REFERENCES users(id),
-    post_id INT REFERENCES posts(id)
+    liker_id INT REFERENCES users(id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts(id) ON DELETE CASCADE
 );
+
+-- Add and Manipulate Data
 
 INSERT INTO users (name, age)
     VALUES('Henry', 29),
@@ -44,12 +45,13 @@ INSERT INTO posts (poster_id, body)
           (4,'Buenos Dias'),
           (5,'Hola');
 
-INSERT INTO likes (liker_id, poster_id)
+INSERT INTO likes (liker_id, post_id)
     VALUES(1, 4),(1,5),(1,6),(1,7),
           (2,4),
           (3,1),(3,2),(3,3),(3,4),
           (4,4),(4,5),(4,7),
           (5,1),(5,2),(5,3),(5,4),(5,5);
+
 
 UPDATE users
 SET age = 31
@@ -59,5 +61,15 @@ UPDATE users
 SET name = 'Alfred'
 WHERE id = 3;
 
--- UPDATE likes
--- S
+-- SELECT *
+-- FROM likes
+-- INNER JOIN posts
+-- ON posts.id = likes.post_id
+-- WHERE post_id = 4 AND liker_id = 1;
+
+DELETE FROM likes
+WHERE liker_id = 1 AND post_id = 2;
+
+DELETE FROM posts 
+WHERE poster_id = 1 AND id = 3;
+
