@@ -15,14 +15,14 @@ CREATE TABLE users (
 
 CREATE TABLE posts(
   id SERIAL PRIMARY KEY,
-  poster_id INTEGER REFERENCES users(id),
+  poster_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
   body TEXT NOT NULL
 );
 
 CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
-  liker_id INTEGER REFERENCES users(id),
-  post_id INTEGER REFERENCES users(id)
+  liker_id INTEGER REFERENCES users(id) ON DELETE SET NULL ,
+  post_id INTEGER REFERENCES users(id) ON DELETE SET NULL 
 );
 
 --add and manipulate data
@@ -35,20 +35,30 @@ INSERT INTO users (name, age)
 
 
 INSERT INTO posts (poster_id, body)
-  VALUES(4, 'I love it.'), 1
-        (4, 'Today was a good day.'), 2
-        (4, 'Stay away.'), 3
-        (1, 'How is everyone?'), 4
-        (2, 'Call me crazy but I feel like....'), 5
-        (3, 'Cookies are the best.'), 6
-        (5, 'What conspiricy theories are you into?'); 7
+  VALUES(4, 'I love it.'), 
+        (4, 'Today was a good day.'), 
+        (4, 'Stay away.'), 
+        (1, 'How is everyone?'), 
+        (2, 'Call me crazy but I feel like....'), 
+        (3, 'Cookies are the best.'), 
+        (5, 'What conspiricy theories are you into?'); 
 
-INSERT INTO likes (liker_id, poster_id)
+INSERT INTO likes (liker_id, post_id)
   VALUES(1, 1),
         (1, 2),
-        (1, 3),(1, 5),(1, 6),(1, 7),
-        (2, 1),(2, 2),(2, 3),
-        (3, 4),(3, 5),
-        (4, 5),(4, 6),(4, 7),
-        (5, 4),(5, 5),(5, 6);
+        (1, 3),
+        (1, 5),
+        (1, 6),
+        (1, 7),
+        (2, 1),
+        (2, 2),
+        (2, 3),
+        (3, 4),
+        (3, 5),
+        (4, 5),
+        (4, 6),
+        (4, 7),
+        (5, 4),
+        (5, 5),
+        (5, 6);
        
