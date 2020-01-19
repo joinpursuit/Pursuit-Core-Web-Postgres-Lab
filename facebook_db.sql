@@ -87,9 +87,10 @@ DELETE FROM likes
 WHERE id = 1;
 
 DELETE FROM posts
-WHERE id = 12
+WHERE id = 12;
 
 DELETE FROM users
-WHERE id = 2
+WHERE id = 2;
 
-
+SELECT MAX(liker_id) as Most_liked
+FROM likes;
