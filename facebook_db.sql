@@ -96,10 +96,11 @@ ON likes.post_id = posts.poster_id
 GROUP BY body
 ORDER BY COUNT(post_id) DESC;
 
-SELECT name, age FROM users
+SELECT name, age, users.id, COUNT(liker_id) FROM users
 JOIN likes 
-ON likes.post_id = users.id 
-GROUP BY name , age;
+ON likes.liker_id = users.id 
+GROUP BY name , age, users.id 
+ORDER BY COUNT(liker_id) DESC;
 
 
 
