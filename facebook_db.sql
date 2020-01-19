@@ -22,7 +22,7 @@ CREATE TABLE posts(
 CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
   liker_id INTEGER REFERENCES users(id) ON DELETE SET NULL ,
-  post_id INTEGER REFERENCES users(id) ON DELETE SET NULL 
+  post_id INTEGER REFERENCES posts(id) ON DELETE SET NULL 
 );
 
 --add and manipulate data
