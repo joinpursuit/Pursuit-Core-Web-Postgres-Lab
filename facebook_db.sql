@@ -5,8 +5,8 @@ CREATE DATABASE mug_mag;
 
 
 DROP Table IF EXISTS users;
--- DROP TABLE IF EXISTS posts;
--- DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS likes;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE users (
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    poster_id INTEGER,
+    poster_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
     body TEXT
 );
 
@@ -84,7 +84,29 @@ WHERE id = 2;
 DELETE FROM users 
 WHERE id = 2;
 
-SELECT name FROM users
+SELECT name, COUNT(liker_id) FROM users
+JOIN likes 
+ON users.id = likes.liker_id
+GROUP BY name
+ORDER BY COUNT(liker_id) DESC;
+
+SELECT body, COUNT(post_id) FROM posts
+JOIN likes
+ON likes.post_id = posts.poster_id
+GROUP BY body
+ORDER BY COUNT(post_id) DESC;
+
+SELECT name, age FROM users
+JOIN likes 
+ON likes.post_id = users.id 
+GROUP BY name , age;
+
+
+
+
+
+ 
+
 
 
 
