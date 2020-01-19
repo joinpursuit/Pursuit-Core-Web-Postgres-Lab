@@ -84,3 +84,36 @@ INSERT INTO users (name, age)
 --     WHERE posts.id = 5
 -- This will grab the count of how many times a post is seen in the likes tables
 
+
+
+-- Delete likes from post
+-- DELETE FROM likes
+-- WHERE id = 4;
+
+-- Delete User 3 posts
+-- DELETE FROM posts
+-- WHERE id = 3;
+
+-- Delete User 2
+-- DELETE FROM users
+-- WHERE id = 2;
+
+-- COUNT
+-- SELECT * FROM posts
+--     JOIN (SELECT post_id, count(*) 
+--     FROM likes 
+--     GROUP BY post_id) AS count_table ON COUNT_table.post_id = posts.id;
+
+-- Gives most liked posts
+-- SELECT COUNT(liker_id), liker_id FROM likes
+-- GROUP BY liker_id
+-- ORDER BY COUNT DESC
+-- LIMIT 1
+
+-- Information about user with most likes 
+-- SELECT * FROM users
+-- JOIN
+-- (SELECT COUNT(liker_id), liker_id FROM likes
+-- GROUP BY liker_id
+-- ORDER BY COUNT DESC
+-- LIMIT 1) AS likes_table ON likes_table.liker_id = users.id;
