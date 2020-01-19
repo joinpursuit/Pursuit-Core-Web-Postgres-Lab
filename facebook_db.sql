@@ -45,5 +45,12 @@ INSERT INTO posts (poster_id, body)
         (3, 'haaaaan'),
         (4, 'byebye');
 
-
-    
+INSERT INTO likes (liker_id, post_id)
+    VALUES
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (1, 4),
+        (1, 5),
+        (1, 6),
+        (1, 7);
