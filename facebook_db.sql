@@ -66,21 +66,34 @@ INSERT INTO likes (liker_id, post_id)
         (5, 5),
         (5, 6);
 
+
 UPDATE users
 SET name = 'Henry', age = 31
 WHERE id = 5;
+
 
 UPDATE users
 SET name = 'Alfred'
 WHERE id = 3;
 
+
 DELETE FROM likes
 WHERE liker_id = 1 AND post_id = 2;
+
 
 DELETE FROM posts
 WHERE id = 3 AND poster_id = 5;
 
+
 DELETE FROM users
 WHERE id = 2;
+
+
+SELECT name, count(liker_id) 
+FROM users
+INNER JOIN likes
+    ON users.id = likes.liker_id
+GROUP BY name ORDER BY COUNT DESC
+LIMIT 1
 
 
