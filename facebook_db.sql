@@ -29,6 +29,7 @@ CREATE TABLE likes(
 );
 
 
+-- Add and Manipulate Data
 
 INSERT INTO users (name, age)
     VALUES  ('Cassidy', 23),
@@ -62,5 +63,13 @@ INSERT INTO likes (liker_id, post_id)
             (3, 2),
             (3, 3),
             (3, 4),
-            (3, 3),
-            (3, 3),
+            (4, 1),
+            (4, 2),
+            (4, 3),
+            (4, 5),
+            (4, 7),
+            (5, 1),
+            (5, 2),
+            (5, 3),
+            (5, 4),
+            (5, 5),
