@@ -32,3 +32,20 @@ INSERT INTO users (name, age)
         ('Jenifer', 28),
         ('Zak', 13),
         ('Anabel', 45);
+
+
+INSERT INTO posts (poster_id, body)
+  VALUES(4, 'I love it.'),
+        (4, 'Today was a good day.'),
+        (4, 'Stay away.'),
+        (1, 'How is everyone?'),
+        (2, 'Call me crazy but I feel like....'),
+        (3, 'Cookies are the best.'),
+        (5, 'What conspiricy theories are you into?');
+
+-- INSERT INTO likes (liker_id, poster_id)
+--   VALUES( ),
+--         ( ),
+--         ( ),
+--         ( ), 
+--         ( ); 
