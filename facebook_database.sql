@@ -27,7 +27,7 @@ CREATE TABLE likes (
     liker_id INT REFERENCES users(id) ON DELETE SET NULL,
     post_id INT REFERENCES posts(id) ON DELETE SET NULL
 );
-
+-- Add and Manipulate Data
 
 INSERT INTO users (name,age)
          VALUES('david',30),--1
@@ -69,11 +69,31 @@ INSERT into likes (post_id,liker_id)
                       (4,5),
                       (5,5);
 
-
 UPDATE users
 SET age = 31
 WHERE id = 5;
 
+UPDATE users
+SET name = 'Alfred'
+WHERE id = 3;
 
-                      
-                      
+DELETE FROM likes
+WHERE id IN (1,2,3) AND liker_id=1;
+
+DELETE FROM posts WHERE id=3 AND poster_id =2;
+
+-- DELETE FROM users WHERE id =2;
+
+-- SELECT name, COUNT(liker_id) 
+-- AS given_like FROM likes 
+-- JOIN users ON liker_id=users.id 
+-- GROUP BY name 
+-- ORDER BY given_like DESC LIMIT 1;
+
+-- SELECT body, MAX(liker_id) AS most_like 
+-- FROM posts JOIN Likes ON posts.id=likes.post_id 
+-- GROUP BY body ORDER BY most_like DESC LIMIT 4
+
+-- SELECT * FROM users 
+-- JOIN posts ON users.id=posts.poster_id 
+-- JOIN likes ON posts.id=likes.post_id
