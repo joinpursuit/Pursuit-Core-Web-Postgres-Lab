@@ -24,3 +24,11 @@ CREATE TABLE likes (
   liker_id INTEGER REFERENCES users(id),
   post_id INTEGER REFERENCES users(id)
 );
+
+--add and manipulate data
+INSERT INTO users (name, age)
+  VALUES('Maria', 27),
+        ('Deven', 31),
+        ('Jenifer', 28),
+        ('Zak', 13),
+        ('Anabel', 45);
