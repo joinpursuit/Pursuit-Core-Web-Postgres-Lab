@@ -89,9 +89,6 @@ WHERE id = 1;
 DELETE FROM posts
 WHERE id = 12
 
-
-
-
 DELETE FROM users
 WHERE id = 2
 
