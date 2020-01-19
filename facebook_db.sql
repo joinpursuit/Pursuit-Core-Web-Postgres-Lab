@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS facebook_db;
 CREATE DATABASE facebook_db;
 
 \c facebook_db;
+
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS posts;
 
@@ -41,3 +42,7 @@ DELETE FROM users
 WHERE ID = 2;
 DELETE FROM posts
 WHERE post_id = 3;
+SELECT liker_id FROM likes
+JOIN users 
+ON post_id = users.post_id
+ORDER BY liker_id DESC; 
