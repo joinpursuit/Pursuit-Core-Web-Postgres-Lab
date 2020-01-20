@@ -1,11 +1,11 @@
 # Pursuit-Core-Web-Postgres-Lab
 
-Build a database for a Facebook-style app. Your Database should have **SQL tables** for the following data: Users, Posts, and Likes. Write your SQL code in a file `facebook_db.sql`. 
-
+Build a database for a Facebook-style app. Your Database should have **SQL tables** for the following data: Users, Posts, and Likes. Write your SQL code in a file `facebook_db.sql`.
 
 ## v1
 
 In the file `facebook_db.sql` have the Database and tables creation SQL statements under the the following SQL comment:
+
 ```
 -- Database & Table Creation
 ```
@@ -28,6 +28,7 @@ Let's use the conceptual structure of _primary_ and _foreign_ keys for expressin
   - `post_id`: integer, **foreign key** referencing the column `id` in Posts.
 
 ### Diagram
+
 ![database diagram v1](./assets/facebook_db_diagram_v1.png)
 
 ### Explanation
@@ -41,22 +42,23 @@ Let's use the conceptual structure of _primary_ and _foreign_ keys for expressin
 ### Add and Manipulate Data
 
 Write SQL statements that accomplish/express the following. Have these SQL queries/statements under the following SQL comment:
+
 ```
 -- Add and Manipulate Data
 ```
 
 - [ ] Add 5 users
-- [ ] One user should have three posts. Add at least one post for the rest of users. 
+- [ ] One user should have three posts. Add at least one post for the rest of users.
 - [ ] User with `id = 1` likes all the other users posts.
 - [ ] User with `id = 2` likes only his/her own post.
-- [ ] User's `2` & `1` posts are liked by user `3` 
+- [ ] User's `2` & `1` posts are liked by user `3`
 - [ ] User `4` likes all posts except her own and user's `1`.
 - [ ] All the posts of user's `1`, `2`, `3` are liked by user `5`.
 - [ ] Update the age of user with `id` 5 to be `31`.
 - [ ] Update the name of user `3` to be `Alfred`
 - [ ] User `1` stops liking user's `2` post.
 - [ ] The user who had three posts decides to delete his/her last post.
-- [ ] User `2` decides to delete their account from of social media app. 
+- [ ] User `2` decides to delete their account from of social media app.
 - [ ] Find the user who has given the most likes.
 - [ ] Find the most liked post.
 - [ ] Find all the information of the user how posted the most liked post.
@@ -78,11 +80,11 @@ Underneath your table structure, go ahead and add some `INSERT` statements to se
 
 **Hint**: Be sure to create tables/items with primary keys before you create tables/items with their corresponding foreign keys! For example, I'm not going to create Posts before I create Users- my database won't be able to recogize the User my new Post is connected to, because I haven't created one yet!
 
-
 ## v2: Bonus
 
 ### Tables
-Add to your database the following tables: 
+
+Add to your database the following tables:
 
 - Comments
   - `id`: integer, **primary key**
@@ -98,11 +100,13 @@ Add to your database the following tables:
   - `url`: string
 
 ### Diagram
+
 ![facebook-style database diagram](./assets/facebook_style_db_diagram.png)
 
 [Interactive Diagram Here](https://dbdiagram.io/d/5db872c3fa792a62f50da1a5)
 
 ### Explanation
+
 Let's think about these associations. In a vacuum, it might not be clear what each individual one is doing. However, we can gain a better understanding when we think about what, exactly, each of these associations is for.
 
 Let's break it down:
@@ -114,6 +118,6 @@ Let's break it down:
 
 ## Resources
 
-* [SQLBolt: Inserting Rows Tutorial](https://sqlbolt.com/lesson/inserting_rows)
-* [SQLBolt: Updating Rows Tutorial](https://sqlbolt.com/lesson/updating_rows)
-* [SQLBolt: Deleting Rows Tutorial](https://sqlbolt.com/lesson/inserting_rows)
+- [SQLBolt: Inserting Rows Tutorial](https://sqlbolt.com/lesson/inserting_rows)
+- [SQLBolt: Updating Rows Tutorial](https://sqlbolt.com/lesson/updating_rows)
+- [SQLBolt: Deleting Rows Tutorial](https://sqlbolt.com/lesson/inserting_rows)
