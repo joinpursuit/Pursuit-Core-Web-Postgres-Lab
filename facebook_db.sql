@@ -11,6 +11,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
     name TEXT,
     age INTEGER
+    
 );
 
 DROP TABLE IF EXISTS posts;
@@ -28,6 +29,26 @@ CREATE TABLE likes (
     liker_id INT REFERENCES users (id) ON DELETE CASCADE,
     post_id INT REFERENCES posts (id) ON DELETE CASCADE
 );
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    commenter_id INT REFERENCES users (id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts (id) ON DELETE CASCADE,
+    body TEXT
+);
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE pictures (
+    id SERIAL PRIMARY KEY,
+    album_id INT REFERENCES users (id) ON DELETE CASCADE,
+    url TEXT 
+);
+
+
 
 -- Add Data
 INSERT INTO users(name, age)
