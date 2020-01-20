@@ -6,6 +6,9 @@ CREATE DATABASE facebook_db;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS albums;
+DROP TABLE IF EXISTS pictures;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -23,6 +26,24 @@ CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
     liker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE
+);
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    commenter_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+    body TEXT
+);
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE pictures (
+    id SERIAL PRIMARY KEY,
+    album_id INTEGER REFERENCES albums(id) ON DELETE CASCADE,
+    url TEXT
 );
 
 
@@ -105,4 +126,5 @@ ORDER BY most_liked DESC
 LIMIT 1
 
 
-SELECT * from user
+
+
