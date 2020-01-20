@@ -108,6 +108,30 @@ VALUES (1,4),
 -- ORDER BY COUNT DESC
 -- LIMIT 1) AS likes_table ON likes_table.liker_id = users.id;
 
+-- v2: Bonus
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY, 
+    commenter_id INT REFERENCES users (id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts (id) ON DELETE CASCADE,
+    body TEXT
+);
+
+DROP TABLE IF EXISTS albums;
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY, 
+    user_id INT REFERENCES users (id) ON DELETE CASCADE,
+);
+
+DROP TABLE IF EXISTS pictures;
+
+CREATE TABLE pictures (
+    id SERIAL PRIMARY KEY, 
+    album_id INT REFERENCES albums (id) ON DELETE CASCADE,
+    url TEXT
+);
 
 
 
