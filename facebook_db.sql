@@ -65,3 +65,7 @@ INSERT INTO likes (liker_id, post_id)
 UPDATE users
 SET age = 31
 WHERE id = 5;
+
+UPDATE users
+SET name =`Alfred`
+WHERE id = 3;
