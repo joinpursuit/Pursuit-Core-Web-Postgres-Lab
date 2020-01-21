@@ -69,3 +69,10 @@ WHERE id = 5;
 UPDATE users
 SET name =`Alfred`
 WHERE id = 3;
+
+DELETE FROM likes WHERE liker_id = 1 AND post_id IN (SELECT id FROM posts WHERE poster_id = 2);
+
+-- DELETE FROM posts WHERE poster_id = 2;
+
+
+--DELETE FROM likes WHERE post_id 
