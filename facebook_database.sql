@@ -97,3 +97,5 @@ DELETE FROM posts WHERE id=3 AND poster_id =2;
 -- SELECT * FROM users 
 -- JOIN posts ON users.id=posts.poster_id 
 -- JOIN likes ON posts.id=likes.post_id
+
+
