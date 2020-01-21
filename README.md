@@ -52,7 +52,7 @@ Write SQL statements that accomplish/express the following. Have these SQL queri
 - [ ] User's `2` & `1` posts are liked by user `3` 
 - [ ] User `4` likes all posts except her own and user's `1`.
 - [ ] All the posts of user's `1`, `2`, `3` are liked by user `5`.
-- [ ] Update the age of user with `id` 5 to be `31`.
+- [*] Update the age of user with `id` 5 to be `31`.
 - [ ] Update the name of user `3` to be `Alfred`
 - [ ] User `1` stops liking user's `2` post.
 - [ ] The user who had three posts decides to delete his/her last post.
