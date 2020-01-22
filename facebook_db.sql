@@ -40,13 +40,13 @@ INSERT INTO users (name, age)
 
 
 INSERT INTO posts (poster_id, body)
-    VALUES  (2, 'DHey 1'),
-            (2, 'DHey 2'),
-            (2, 'DHey 3'),
-            (1, 'Chey 1'),
-            (3, 'UHEY'),
-            (4, 'NHey'),
-            (5, 'SHEY');
+    VALUES  (2, 'Hey Boo!'),
+            (2, 'Howdy ho!'),
+            (2, 'Go Gina'),
+            (1, 'Hello world'),
+            (3, 'I like dat'),
+            (4, 'Another one'),
+            (5, 'One drop');
 
 INSERT INTO likes (liker_id, post_id)
     VALUES  (1, 1),
@@ -72,4 +72,4 @@ INSERT INTO likes (liker_id, post_id)
             (5, 2),
             (5, 3),
             (5, 4),
-            (5, 5),
+            (5, 5);
