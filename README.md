@@ -58,7 +58,19 @@ Write SQL statements that accomplish/express the following. Have these SQL queri
 - [ ] The user who had three posts decides to delete his/her last post.
 - [ ] User `2` decides to delete their account from of social media app. 
 - [ ] Find the user who has given the most likes.
+
+SELECT users.id, count(likes.liker_id) AS num_of_likes FROM users
+JOIN likes 
+ON likes.liker_id = users.id
+GROUP BY users.id
+ORDER BY num_of_likes DESC LIMIT 1
+
 - [ ] Find the most liked post.
+
+SELECT post_id, COUNT(id) AS num_of_likes FROM likes
+GROUP BY post_id
+ORDER BY num_of_likes DESC LIMIT 1
+
 - [ ] Find all the information of the user how posted the most liked post.
 
 ### Keep in mind.
