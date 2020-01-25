@@ -102,7 +102,7 @@ Add to your database the following tables:
 
 [Interactive Diagram Here](https://dbdiagram.io/d/5db872c3fa792a62f50da1a5)
 
-### Explanation
+### Explanatione
 Let's think about these associations. In a vacuum, it might not be clear what each individual one is doing. However, we can gain a better understanding when we think about what, exactly, each of these associations is for.
 
 Let's break it down:
