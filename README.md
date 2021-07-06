@@ -59,7 +59,7 @@ Write SQL statements that accomplish/express the following. Have these SQL queri
 - [ ] User `2` decides to delete their account from of social media app. 
 - [ ] Find the user who has given the most likes.
 - [ ] Find the most liked post.
-- [ ] Find all the information of the user how posted the most liked post.
+- [ ] Find all the information of the user who posted the most liked post.
 
 ### Keep in mind.
 
@@ -102,7 +102,7 @@ Add to your database the following tables:
 
 [Interactive Diagram Here](https://dbdiagram.io/d/5db872c3fa792a62f50da1a5)
 
-### Explanation
+### Explanatione
 Let's think about these associations. In a vacuum, it might not be clear what each individual one is doing. However, we can gain a better understanding when we think about what, exactly, each of these associations is for.
 
 Let's break it down:
